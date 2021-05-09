@@ -8,4 +8,9 @@
     <select id="findById" resultType="omu.dddd.domain.Adventurer">
         select * from adventurer where id = #{id}
     </select>
+
+    <select id="findAll" resultType="omu.dddd.domain.Adventurer">
+        select * from adventurer
+    </select>
+
 </mapper>

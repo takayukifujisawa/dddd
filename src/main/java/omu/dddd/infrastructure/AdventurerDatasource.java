@@ -1,5 +1,7 @@
 package omu.dddd.infrastructure;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import omu.dddd.domain.Adventurer;
@@ -17,6 +19,11 @@ public class AdventurerDatasource implements IAdventurerRepository {
     @Override
     public Adventurer findById(int id) {
         return mapper.findById(id);
+    }
+
+    @Override
+    public List<Adventurer> findAll() {
+        return mapper.findAll();
     }
     
 }
