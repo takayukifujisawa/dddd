@@ -9,3 +9,9 @@ spring:
         initialization-mode: always
         schema: classpath:schema.sql
         data: classpath:data.sql
+
+logging:
+    level:
+        '[org.springframework.web]': INFO
+    # file:
+    #     name: logs/app.log
