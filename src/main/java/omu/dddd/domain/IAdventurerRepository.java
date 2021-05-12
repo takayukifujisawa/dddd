@@ -8,4 +8,6 @@ public interface IAdventurerRepository {
 
     public List<Adventurer> findAll();
 
+    public void save(Adventurer newAdventurer);
+
 }

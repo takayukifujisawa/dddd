@@ -6,11 +6,30 @@
 <mapper namespace="omu.dddd.infrastructure.AdventurerMapper">
 
     <select id="findById" resultType="omu.dddd.domain.Adventurer">
-        select * from adventurer where id = #{id}
+        SELECT * FROM adventurer WHERE id = #{id}
     </select>
 
     <select id="findAll" resultType="omu.dddd.domain.Adventurer">
-        select * from adventurer
+        SELECT * FROM adventurer
     </select>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO adventurer
+            (
+            name, race,
+            vitality, 
+            strength, dexterity, reflex,
+            intelligence, wisdom, mind, 
+            agility, luck
+            )
+        VALUES
+            (
+            #{adventurer.name}, #{adventurer.race},
+            #{adventurer.vitality}, 
+            #{adventurer.strength}, #{adventurer.dexterity}, #{adventurer.reflex},
+            #{adventurer.intelligence}, #{adventurer.wisdom}, #{adventurer.mind},
+            #{adventurer.agility}, #{adventurer.luck}
+            )
+    </insert>
 
 </mapper>

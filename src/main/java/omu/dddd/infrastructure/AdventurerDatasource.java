@@ -25,5 +25,10 @@ public class AdventurerDatasource implements IAdventurerRepository {
     public List<Adventurer> findAll() {
         return mapper.findAll();
     }
+
+    @Override
+    public void save(Adventurer newAdventurer) {
+        mapper.insert(newAdventurer);
+    }
     
 }
