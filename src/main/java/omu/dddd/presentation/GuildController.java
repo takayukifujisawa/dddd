@@ -2,6 +2,7 @@ package omu.dddd.presentation;
 
 import java.util.List;
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,7 +33,7 @@ public class GuildController {
     }
 
     @PostMapping("/adventurer/create")
-    public Adventurer createAdventurer(@RequestBody AdventurerCreateParam param) {
+    public Adventurer createAdventurer(@Validated @RequestBody AdventurerCreateParam param) {
         return adventurerCreateUseCase.create(param);
     }
 }
