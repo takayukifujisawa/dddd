@@ -8,6 +8,12 @@ group = 'omu'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+sourceSets {
+    main {
+        resources.srcDirs = ["src/main/java", "src/main/resources"]
+    }
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
