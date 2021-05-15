@@ -10,21 +10,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import omu.dddd.application.AdventurerCreateUseCase;
+import omu.dddd.application.PartyCreateUseCase;
 import omu.dddd.domain.Adventurer;
 import omu.dddd.domain.IAdventurerRepository;
+import omu.dddd.domain.IPartyRepository;
+import omu.dddd.domain.Party;
 import omu.dddd.domain.validationRule.DefaultOrder;
 
 @RestController
 @RequestMapping("/api/guild")
 public class GuildController {
     
-    private final IAdventurerRepository adventurerRepository;
     private final AdventurerCreateUseCase adventurerCreateUseCase;
+    private final IAdventurerRepository adventurerRepository;
+    private final PartyCreateUseCase partyCreateUseCase;
+    private final IPartyRepository partyRepository;
 
-    public GuildController(IAdventurerRepository adventurerRepository,
-            AdventurerCreateUseCase adventurerCreateUseCase) {
-        this.adventurerRepository = adventurerRepository;
+    public GuildController(AdventurerCreateUseCase adventurerCreateUseCase, IAdventurerRepository adventurerRepository,
+            PartyCreateUseCase partyCreateUseCase, IPartyRepository partyRepository) {
         this.adventurerCreateUseCase = adventurerCreateUseCase;
+        this.adventurerRepository = adventurerRepository;
+        this.partyCreateUseCase = partyCreateUseCase;
+        this.partyRepository = partyRepository;
     }
 
     @GetMapping("/adventurers")
@@ -37,4 +44,16 @@ public class GuildController {
     public Adventurer createAdventurer(@Validated(DefaultOrder.class) @RequestBody AdventurerCreateParam param) {
         return adventurerCreateUseCase.create(param);
     }
+
+    @GetMapping("/parties")
+    public List<Party> parties() {
+        List<Party> parties = partyRepository.findAll();
+        return parties;
+    }
+
+    @PostMapping("/party/create")
+    public Party createParty(@Validated(DefaultOrder.class) @RequestBody PartyCreateParam param) {
+        return partyCreateUseCase.create(param);
+    }
+
 }

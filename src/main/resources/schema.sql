@@ -12,3 +12,8 @@ CREATE TABLE IF NOT EXISTS adventurer (
     agility INTEGER NOT NULL,
     luck  INTEGER NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS party (
+    id INTEGER PRIMARY KEY auto_increment,
+    name VARCHAR(40) NOT NULL
+);
