@@ -6,47 +6,50 @@ import javax.validation.constraints.Size;
 
 import lombok.Data;
 import omu.dddd.domain.Race;
+import omu.dddd.domain.validationRule.BusinessLogic;
+import omu.dddd.domain.validationRule.FormatCheck;
+import omu.dddd.domain.validationRule.Required;
 
 @Data
 public class AdventurerCreateParam {
 
-    @NotNull
-    @Size(min=1, max=20)
+    @NotNull(groups = Required.class)
+    @Size(min=1, max=20, groups = FormatCheck.class)
     String name;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Race race;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer vitality;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer strength;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer dexterity;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer reflex;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer intelligence;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer wisdom;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer mind;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer agility;
 
-    @NotNull
+    @NotNull(groups = Required.class)
     Integer luck;
 
     public static final int MAX_TOTAL_PARAMETERS = 45;
 
-    @AssertTrue(message = "追加パラメータの合計が 45 を超えています")
+    @AssertTrue(message = "追加パラメータの合計が 45 を超えています", groups = BusinessLogic.class)
     boolean isOverMaxTotalParameters() {
         int totalParams = vitality + strength + dexterity + reflex + intelligence + wisdom + mind + agility + luck;
         return totalParams <= MAX_TOTAL_PARAMETERS;

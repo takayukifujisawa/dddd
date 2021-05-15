@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import omu.dddd.application.AdventurerCreateUseCase;
 import omu.dddd.domain.Adventurer;
 import omu.dddd.domain.IAdventurerRepository;
+import omu.dddd.domain.validationRule.DefaultOrder;
 
 @RestController
 @RequestMapping("/api/guild")
@@ -33,7 +34,7 @@ public class GuildController {
     }
 
     @PostMapping("/adventurer/create")
-    public Adventurer createAdventurer(@Validated @RequestBody AdventurerCreateParam param) {
+    public Adventurer createAdventurer(@Validated(DefaultOrder.class) @RequestBody AdventurerCreateParam param) {
         return adventurerCreateUseCase.create(param);
     }
 }
