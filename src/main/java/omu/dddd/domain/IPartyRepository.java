@@ -10,4 +10,8 @@ public interface IPartyRepository {
 
     List<Party> findAll();
 
+    PartyMembers getPartyMembers(int i);
+
+    void addPartyMember(Integer targetPartyId, Integer targetAdventurerId);
+
 }

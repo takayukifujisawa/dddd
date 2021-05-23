@@ -17,3 +17,9 @@ CREATE TABLE IF NOT EXISTS party (
     id INTEGER PRIMARY KEY auto_increment,
     name VARCHAR(40) NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS party_member (
+    id INTEGER PRIMARY KEY auto_increment,
+    party_id INTEGER NOT NULL,
+    adventurer_id INTEGER NOT NULL
+);

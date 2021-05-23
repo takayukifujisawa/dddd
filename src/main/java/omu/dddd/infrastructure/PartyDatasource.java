@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import omu.dddd.domain.Adventurer;
 import omu.dddd.domain.IPartyRepository;
 import omu.dddd.domain.Party;
+import omu.dddd.domain.PartyMembers;
 
 @Repository
 public class PartyDatasource implements IPartyRepository {
@@ -29,6 +31,17 @@ public class PartyDatasource implements IPartyRepository {
     @Override
     public List<Party> findAll() {
         return mapper.findAll();
+    }
+
+    @Override
+    public PartyMembers getPartyMembers(int partyId) {
+        List<Adventurer> partyMembers = mapper.findPartyMembersByPartyId(partyId);
+        return new PartyMembers(partyMembers);
+    }
+
+    @Override
+    public void addPartyMember(Integer partyId, Integer adventurerId) {
+        mapper.insertPartyMember(partyId, adventurerId);
     }
 
 }

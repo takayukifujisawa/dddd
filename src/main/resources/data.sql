@@ -13,3 +13,11 @@ values
 ('パーティB'),
 ('パーティC')
 ;
+
+INSERT INTO party_member
+(party_id, adventurer_id)
+values
+(1, 1),
+(1, 2),
+(2, 3)
+;
