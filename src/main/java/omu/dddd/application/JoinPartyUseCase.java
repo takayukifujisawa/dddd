@@ -17,7 +17,12 @@ public class JoinPartyUseCase {
     }
 
     public PartyMembers join(JoinPartyParam jpp) throws PartyMemberDuplicatedException {
-        // TODO: 重複エラー実装
+
+        boolean hasJoined = partyRepository.getPartyMember(jpp.getTargetPartyId(), jpp.getTargetAdventurerId()) != null;
+        if (hasJoined) {
+            throw new PartyMemberDuplicatedException();
+        }
+
         partyRepository.addPartyMember(jpp.getTargetPartyId(), jpp.getTargetAdventurerId());
         return partyRepository.getPartyMembers(jpp.getTargetPartyId());
     }

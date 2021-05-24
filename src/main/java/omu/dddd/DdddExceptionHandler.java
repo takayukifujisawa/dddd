@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import omu.dddd.domain.ApiHandlableException;
+
 @RestControllerAdvice
 class DdddExceptionHandler {
 
@@ -36,5 +38,22 @@ class DdddExceptionHandler {
         logger.info(map.toString());
 
         return map;
-	}    
+	}
+
+    /**
+     * contoller dto validation error handler
+     */
+	@ExceptionHandler(ApiHandlableException.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public Map<String, ?> handleException(ApiHandlableException ex) {
+
+        Map<String, String> map = new HashMap<>();
+
+        map.put("error", ex.getMessage());
+
+        logger.info("** Validation Error **");
+        logger.info(map.toString());
+
+        return map;
+	}
 }

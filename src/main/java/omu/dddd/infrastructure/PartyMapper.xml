@@ -29,4 +29,11 @@
         INSERT INTO party_member (party_id, adventurer_id) VALUES (#{party_id}, #{adventurer_id})
     </insert>
 
+    <select id="findPartyMemberByPartyIdAndAdventurerId" resultType="omu.dddd.domain.Adventurer">
+        SELECT
+         adventurer.* 
+        FROM party_member
+        JOIN adventurer ON party_member.adventurer_id = adventurer.id
+        WHERE party_member.party_id = #{party_id} AND party_member.adventurer_id = #{adventurer_id}
+    </select>
 </mapper>

@@ -21,4 +21,6 @@ public interface PartyMapper {
 
     void insertPartyMember(@Param("party_id") Integer partyId, @Param("adventurer_id") Integer adventurerId);
 
+    Adventurer findPartyMemberByPartyIdAndAdventurerId(@Param("party_id") Integer partyId, @Param("adventurer_id") Integer adventurerId);
+
 }

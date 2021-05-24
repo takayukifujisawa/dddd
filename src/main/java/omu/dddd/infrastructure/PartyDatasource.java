@@ -44,4 +44,9 @@ public class PartyDatasource implements IPartyRepository {
         mapper.insertPartyMember(partyId, adventurerId);
     }
 
+    @Override
+    public Adventurer getPartyMember(Integer partyId, Integer adventurerId) {
+        return mapper.findPartyMemberByPartyIdAndAdventurerId(partyId, adventurerId);
+    }
+
 }

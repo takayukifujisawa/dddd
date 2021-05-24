@@ -30,7 +30,7 @@ public class JoinPartyUseCaseTest {
 
         JoinPartyParam jpp = new JoinPartyParam();
         jpp.setTargetPartyId(1);
-        jpp.setTargetAdventurerId(1);
+        jpp.setTargetAdventurerId(3);
 
         PartyMembers partyMembersBefore = partyRepository.getPartyMembers(jpp.getTargetPartyId());
         PartyMembers partyMembersAfter = joinPartyUseCase.join(jpp);
@@ -45,8 +45,8 @@ public class JoinPartyUseCaseTest {
         @BeforeEach
         void preJoinAdventurer() throws PartyMemberDuplicatedException {
             JoinPartyParam jpp = new JoinPartyParam();
-            jpp.setTargetPartyId(1);
-            jpp.setTargetAdventurerId(1);
+            jpp.setTargetPartyId(2);
+            jpp.setTargetAdventurerId(2);
 
             joinPartyUseCase.join(jpp);
         }
@@ -55,8 +55,8 @@ public class JoinPartyUseCaseTest {
         void testJoinFailDuplicate() {
             Assertions.assertThrows(PartyMemberDuplicatedException.class, () -> {
                 JoinPartyParam jpp = new JoinPartyParam();
-                jpp.setTargetPartyId(1);
-                jpp.setTargetAdventurerId(1);
+                jpp.setTargetPartyId(2);
+                jpp.setTargetAdventurerId(2);
                 joinPartyUseCase.join(jpp);            
             });
         }

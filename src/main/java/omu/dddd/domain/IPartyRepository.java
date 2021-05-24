@@ -14,4 +14,6 @@ public interface IPartyRepository {
 
     void addPartyMember(Integer targetPartyId, Integer targetAdventurerId);
 
+    Adventurer getPartyMember(Integer targetPartyId, Integer targetAdventurerId);
+
 }
