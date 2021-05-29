@@ -16,4 +16,6 @@ public interface IPartyRepository {
 
     Adventurer getPartyMember(Integer targetPartyId, Integer targetAdventurerId);
 
+    void deletePartyMember(Integer targetPartyId, Integer targetAdventurerId);
+
 }

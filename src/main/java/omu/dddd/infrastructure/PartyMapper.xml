@@ -36,4 +36,9 @@
         JOIN adventurer ON party_member.adventurer_id = adventurer.id
         WHERE party_member.party_id = #{party_id} AND party_member.adventurer_id = #{adventurer_id}
     </select>
+
+    <delete id="deletePartyMember">
+        DELETE FROM party_member WHERE party_id = #{party_id} AND adventurer_id = #{adventurer_id}
+    </delete>
+
 </mapper>

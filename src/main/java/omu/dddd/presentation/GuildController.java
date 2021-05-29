@@ -13,12 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.AllArgsConstructor;
 import omu.dddd.application.AdventurerCreateUseCase;
 import omu.dddd.application.JoinPartyUseCase;
+import omu.dddd.application.LeavePartyUseCase;
 import omu.dddd.application.PartyCreateUseCase;
 import omu.dddd.domain.Adventurer;
 import omu.dddd.domain.IAdventurerRepository;
 import omu.dddd.domain.IPartyRepository;
 import omu.dddd.domain.Party;
 import omu.dddd.domain.PartyMemberDuplicatedException;
+import omu.dddd.domain.PartyMemberUncontainsException;
 import omu.dddd.domain.PartyMembers;
 import omu.dddd.domain.validationRule.DefaultOrder;
 
@@ -32,6 +34,7 @@ public class GuildController {
     private final PartyCreateUseCase partyCreateUseCase;
     private final IPartyRepository partyRepository;
     private final JoinPartyUseCase joinPartyUseCase;
+    private final LeavePartyUseCase leavePartyUseCase;
 
     @GetMapping("/adventurer/{id}")
     public Adventurer adventurer(@PathVariable("id") Integer id) {
@@ -65,5 +68,11 @@ public class GuildController {
     public PartyMembers joinParty(@Validated(DefaultOrder.class) @RequestBody JoinPartyParam param) throws PartyMemberDuplicatedException {
         return joinPartyUseCase.join(param);
     }
+
+    @PostMapping("party/leave")
+    public PartyMembers leaveParty(@Validated(DefaultOrder.class) @RequestBody LeavePartyParam param) throws PartyMemberUncontainsException {
+        return leavePartyUseCase.leave(param);
+    }
+
 
 }

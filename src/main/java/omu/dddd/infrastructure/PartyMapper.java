@@ -23,4 +23,6 @@ public interface PartyMapper {
 
     Adventurer findPartyMemberByPartyIdAndAdventurerId(@Param("party_id") Integer partyId, @Param("adventurer_id") Integer adventurerId);
 
+    void deletePartyMember(@Param("party_id") Integer partyId, @Param("adventurer_id") Integer adventurerId);
+
 }

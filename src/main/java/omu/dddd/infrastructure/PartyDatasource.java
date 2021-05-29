@@ -49,4 +49,9 @@ public class PartyDatasource implements IPartyRepository {
         return mapper.findPartyMemberByPartyIdAndAdventurerId(partyId, adventurerId);
     }
 
+    @Override
+    public void deletePartyMember(Integer partyId, Integer adventurerId) {
+        mapper.deletePartyMember(partyId, adventurerId);
+    }
+
 }

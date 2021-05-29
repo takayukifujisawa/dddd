@@ -31,6 +31,7 @@ import omu.dddd.domain.PartyMembers;
 import omu.dddd.domain.Race;
 import omu.dddd.presentation.AdventurerCreateParam;
 import omu.dddd.presentation.JoinPartyParam;
+import omu.dddd.presentation.LeavePartyParam;
 import omu.dddd.presentation.PartyCreateParam;
 
 @SpringBootTest
@@ -159,7 +160,43 @@ public class GuildControllerTest {
             assertEquals("冒険者2", responseJsonArray.getJSONObject(1).getString("name"));
             assertEquals("冒険者3", responseJsonArray.getJSONObject(2).getString("name"));
         }
+
+        @Test
+        public void testLeaveParty() throws Exception {
+            PartyMembers partyMembers = new PartyMembers(
+                new ArrayList<Adventurer>(
+                    Arrays.asList(
+                        new Adventurer(1, "冒険者1", Race.Human, 0,0,0,0,0,0,0,0,0),
+                        new Adventurer(2, "冒険者2", Race.Human, 0,0,0,0,0,0,0,0,0)
+                    )
+            ));
+
+            when(partyRepository.getPartyMember(1,3)).thenReturn(new Adventurer(3, "冒険者3", Race.Human, 0,0,0,0,0,0,0,0,0));
+
+            when(partyRepository.getPartyMembers(1)).thenReturn(partyMembers);
     
+            LeavePartyParam lpp = new LeavePartyParam();
+            lpp.setTargetPartyId(1);
+            lpp.setTargetAdventurerId(3);
+            
+            ObjectMapper mapper = new ObjectMapper();
+    
+            String response = 
+                mockMvc.perform(
+                    post("/api/guild/party/leave")
+                    .content(mapper.writeValueAsString(lpp))
+                    .contentType(MediaType.APPLICATION_JSON_VALUE)
+                )
+            .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+    
+            JSONObject responseJson = new JSONObject(response);
+            JSONArray responseJsonArray = responseJson.getJSONArray("members");
+            
+            assertEquals(2, responseJsonArray.length());
+            assertEquals("冒険者1", responseJsonArray.getJSONObject(0).getString("name"));
+            assertEquals("冒険者2", responseJsonArray.getJSONObject(1).getString("name"));
+        }
+
     }
         
         
