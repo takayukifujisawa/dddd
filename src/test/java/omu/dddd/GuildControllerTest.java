@@ -58,6 +58,24 @@ public class GuildControllerTest {
         private IPartyRepository partyRepository;
 
         @Test
+        public void testAdventurer() throws Exception {
+            when(adventurerRepository.findById(1))
+                .thenReturn(
+                    new Adventurer(1, "冒険者1", Race.Human, 0,0,0,0,0,0,0,0,0)
+                );
+            
+            String response = 
+                mockMvc.perform(
+                    get("/api/guild/adventurer/1")
+                )
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+                
+                JSONObject responseJson = new JSONObject(response);
+                
+                assertEquals("冒険者1", responseJson.getString("name"));
+        }
+
+        @Test
         public void testAdventurers() throws Exception {
             when(adventurerRepository.findAll())
                 .thenReturn(new ArrayList<Adventurer>(

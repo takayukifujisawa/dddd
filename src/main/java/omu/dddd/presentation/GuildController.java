@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,6 +32,12 @@ public class GuildController {
     private final PartyCreateUseCase partyCreateUseCase;
     private final IPartyRepository partyRepository;
     private final JoinPartyUseCase joinPartyUseCase;
+
+    @GetMapping("/adventurer/{id}")
+    public Adventurer adventurer(@PathVariable("id") Integer id) {
+        Adventurer adventurer = adventurerRepository.findById(id);
+        return adventurer;
+    }
 
     @GetMapping("/adventurers")
     public List<Adventurer> adventurers() {
