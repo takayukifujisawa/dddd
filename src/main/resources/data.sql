@@ -6,18 +6,18 @@ values
 ('冒険者C',    'Dwarf',  8,          12,         20,         20,     10,             10,     10,     20,         15)
 ;
 
-INSERT INTO party
-(name)
-values
-('パーティA'),
-('パーティB'),
-('パーティC')
-;
+-- INSERT INTO party
+-- (name)
+-- values
+-- ('パーティA'),
+-- ('パーティB'),
+-- ('パーティC')
+-- ;
 
-INSERT INTO party_member
-(party_id, adventurer_id)
-values
-(1, 1),
-(1, 2),
-(2, 3)
-;
+-- INSERT INTO party_member
+-- (party_id, adventurer_id)
+-- values
+-- (1, 1),
+-- (1, 2),
+-- (2, 3)
+-- ;

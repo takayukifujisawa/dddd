@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import omu.dddd.application.JoinPartyUseCase;
 import omu.dddd.domain.IPartyRepository;
@@ -17,6 +18,7 @@ import omu.dddd.domain.PartyMembers;
 import omu.dddd.presentation.JoinPartyParam;
 
 @SpringBootTest
+@Transactional
 public class JoinPartyUseCaseTest {
     
     @Autowired

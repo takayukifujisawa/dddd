@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.transaction.annotation.Transactional;
 
 import omu.dddd.application.LeavePartyUseCase;
 import omu.dddd.domain.IPartyRepository;
@@ -15,6 +17,7 @@ import omu.dddd.domain.PartyMembers;
 import omu.dddd.presentation.LeavePartyParam;
 
 @SpringBootTest
+@Transactional
 public class LeavePartyUseCaseTest {
     
     @Autowired
@@ -24,6 +27,7 @@ public class LeavePartyUseCaseTest {
     private IPartyRepository partyRepository;
 
 	@Test
+    @Sql("classpath:sql/LeavePartyUseCaseTest/testLeave.sql")
 	void testLeave() throws PartyMemberUncontainsException {
 
         LeavePartyParam lpp = new LeavePartyParam();

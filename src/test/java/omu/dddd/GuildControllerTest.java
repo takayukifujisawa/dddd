@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import omu.dddd.domain.Adventurer;
 import omu.dddd.domain.IAdventurerRepository;
@@ -36,6 +37,7 @@ import omu.dddd.presentation.PartyCreateParam;
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@Transactional
 public class GuildControllerTest {
     
     @Autowired

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import omu.dddd.application.PartyCreateUseCase;
 import omu.dddd.domain.IPartyRepository;
@@ -13,6 +14,7 @@ import omu.dddd.domain.Party;
 import omu.dddd.presentation.PartyCreateParam;
 
 @SpringBootTest
+@Transactional
 public class PartyCreateUseCaseTest {
     
     @Autowired
